@@ -6,6 +6,11 @@
 <title>Corner Shop Web · Premium Websites for Local Businesses</title>
 <meta name="description" content="Corner Shop Web builds premium, fast websites for local shops, trades and cafés. We start with a free preview of your site.">
 <meta name="theme-color" content="#111214">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="alternate icon" href="/favicon.ico">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png">
+<link rel="manifest" href="/site.webmanifest">
 <meta property="og:title" content="Corner Shop Web">
 <meta property="og:description" content="Premium websites for local businesses. See a free preview of yours before you pay a cent.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -75,7 +80,31 @@ section { padding-block: clamp(4rem, 8vw, 6rem); border-top: 1px solid var(--lin
 .tier .price small { font-size: .9rem; color: var(--muted); font-weight: 500; }
 .tier ul { margin: 0; padding-left: 1.1rem; color: var(--muted); display: grid; gap: .35rem; }
 .note { color: var(--muted); font-size: .9rem; margin-top: 1rem; }
-.contact { display: grid; grid-template-columns: 1.2fr 1fr; gap: 2rem; align-items: center; }
+.contact { display: grid; grid-template-columns: 1fr 1.1fr; gap: clamp(2rem, 4vw, 3.5rem); align-items: start; }
+.contact-copy { display: grid; gap: 1.1rem; align-content: start; }
+.contact-copy p { color: var(--muted); font-size: 1.05rem; }
+.contact-copy .mail { color: var(--ink); text-decoration: none; font-weight: 600; border-bottom: 1px solid var(--line); justify-self: start; }
+.form { background: var(--surface); border-radius: 24px; padding: clamp(1.2rem, 3vw, 1.8rem); display: grid; gap: 1rem; box-shadow: inset 0 0 0 1px var(--line); }
+.form .row { display: grid; grid-template-columns: 1fr 1fr; gap: .8rem; }
+@media (max-width: 520px) { .form .row { grid-template-columns: 1fr; } }
+.form label { display: grid; gap: .35rem; font-size: .82rem; font-weight: 500; color: var(--muted); }
+.form label span b { color: var(--accent); font-weight: 600; }
+.form input, .form select, .form textarea { width: 100%; font: inherit; font-size: 1rem; color: var(--ink); background: var(--bg); border: 1px solid var(--line); border-radius: 12px; padding: .8rem .9rem; transition: border-color .2s, box-shadow .2s; }
+.form textarea { min-height: 6.5rem; resize: vertical; }
+.form input:focus, .form select:focus, .form textarea:focus { outline: none; border-color: var(--accent); box-shadow: 0 0 0 3px rgba(240,168,104,.2); }
+.form [aria-invalid="true"] { border-color: #ff7a6b; }
+.form .err { color: #ff9c90; font-size: .8rem; min-height: 1em; }
+.form button { border: 0; cursor: pointer; justify-content: center; width: 100%; font: inherit; font-weight: 600; }
+.form button[disabled] { opacity: .6; cursor: progress; }
+.form .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+.form .status { font-size: .92rem; min-height: 1.4em; color: var(--muted); }
+.form .status.ok { color: #7fd6a4; } .form .status.bad { color: #ff9c90; }
+.sent { display: none; text-align: center; padding: 2rem 1rem; gap: .8rem; justify-items: center; }
+.form.done > *:not(.sent) { display: none; } .form.done .sent { display: grid; }
+.sent .tick { width: 56px; height: 56px; border-radius: 50%; background: var(--accent); color: var(--accent-ink); display: grid; place-items: center; animation: pop .6s cubic-bezier(.34,1.56,.64,1); }
+@keyframes pop { from { transform: scale(0); } }
+.sent h3 { font-family: var(--display); font-stretch: 110%; font-size: 1.5rem; }
+.sent p { color: var(--muted); max-width: 22rem; }
 @media (max-width: 820px) { .contact { grid-template-columns: 1fr; } }
 footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--muted); font-size: .85rem; }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; } }
@@ -135,12 +164,55 @@ footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--mu
 
   <section id="contact" aria-label="Contact">
     <div class="wrap contact">
-      <div><div class="eyebrow">Get a free preview</div><h2 class="h2" style="margin-top:.6rem">Want to see your business <span>on a site like these?</span></h2></div>
-      <div style="display:grid;gap:1rem;justify-items:start"><p style="color:var(--muted);font-size:1.05rem">Send us your business name and city. We’ll build a free preview of your site and email you the link, usually within two days.</p><a class="btn" href="mailto:aravind@cornershopweb.com?subject=Free%20website%20preview">aravind@cornershopweb.com</a></div>
+      <div class="contact-copy"><div class="eyebrow">Get a free preview</div><h2 class="h2">Want to see your business <span>on a site like these?</span></h2><p>Tell us a little about your business. We’ll build a free preview of your site and email you the link, usually within two days. No payment, no obligation.</p><p>Prefer email? Write to <a class="mail" href="mailto:aravind@cornershopweb.com?subject=Free%20website%20preview">aravind@cornershopweb.com</a></p></div>
+      <form class="form" id="leadForm" novalidate>
+        <div class="row">
+          <label for="fName"><span>Your name <b>*</b></span><input id="fName" name="name" autocomplete="name" required></label>
+          <label for="fBiz"><span>Business name <b>*</b></span><input id="fBiz" name="business" autocomplete="organization" required></label>
+        </div>
+        <div class="row">
+          <label for="fEmail"><span>Email <b>*</b></span><input id="fEmail" name="email" type="email" autocomplete="email" spellcheck="false" required></label>
+          <label for="fPhone"><span>Phone</span><input id="fPhone" name="phone" type="tel" inputmode="tel" autocomplete="tel"></label>
+        </div>
+        <div class="row">
+          <label for="fCity"><span>City <b>*</b></span><input id="fCity" name="city" autocomplete="address-level2" required></label>
+          <label for="fType"><span>What do you need?</span><select id="fType" name="need"><option>A new website</option><option>Redesign my current site</option><option>Online booking or quotes</option><option>Online store or menu</option><option>Not sure yet</option></select></label>
+        </div>
+        <label for="fMsg"><span>Anything we should know?</span><textarea id="fMsg" name="message" placeholder="Your current website, what you sell, what you’d like customers to do…"></textarea></label>
+        <label class="hp" aria-hidden="true">Leave this empty<input name="_honey" tabindex="-1" autocomplete="off"></label>
+        <button class="btn" type="submit" id="fSend">Send My Request <span aria-hidden="true">→</span></button>
+        <p class="status" id="fStatus" role="status" aria-live="polite"></p>
+        <div class="sent" role="status"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><h3>Thanks, we’ve got it.</h3><p>We’ll build your free preview and email you the link, usually within two days.</p></div>
+      </form>
     </div>
   </section>
 </main>
 <footer><div class="wrap">© <span id="yr"></span> Corner Shop Web</div></footer>
-<script>document.getElementById('yr').textContent = new Date().getFullYear();</script>
+<script>
+document.getElementById('yr').textContent = new Date().getFullYear();
+(() => {
+  const form = document.getElementById('leadForm'), btn = document.getElementById('fSend'), status = document.getElementById('fStatus');
+  const req = [['fName', 'Add your name.'], ['fBiz', 'Add your business name.'], ['fEmail', 'Add an email so we can send your preview.'], ['fCity', 'Add your city.']];
+  form.addEventListener('input', (e) => { if (e.target.getAttribute('aria-invalid') === 'true') e.target.removeAttribute('aria-invalid'); });
+  form.addEventListener('submit', async (e) => {
+    e.preventDefault(); status.className = 'status'; status.textContent = '';
+    for (const [id, msg] of req) { const el = document.getElementById(id); el.removeAttribute('aria-invalid');
+      if (!el.value.trim() || (el.type === 'email' && !/^\S+@\S+\.\S+$/.test(el.value.trim()))) { el.setAttribute('aria-invalid', 'true'); el.focus(); status.className = 'status bad'; status.textContent = el.type === 'email' && el.value.trim() ? 'That email address doesn’t look right.' : msg; return; } }
+    const data = Object.fromEntries(new FormData(form));
+    if (data._honey) return; // bots fill the hidden field
+    data._subject = `New preview request: ${data.business} (${data.city})`; data._template = 'table'; data._replyto = data.email; data._captcha = 'false';
+    btn.disabled = true; btn.firstChild.textContent = 'Sending… ';
+    try {
+      const r = await fetch('https://formsubmit.co/ajax/aravind@cornershopweb.com', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+      const j = await r.json().catch(() => ({}));
+      if (r.ok && String(j.success) !== 'false') { form.classList.add('done'); form.querySelector('.sent').focus?.(); }
+      else throw new Error(j.message || 'Send failed');
+    } catch (err) {
+      status.className = 'status bad'; status.innerHTML = 'Sorry, that didn’t send. Please email <a href="mailto:aravind@cornershopweb.com" style="color:inherit">aravind@cornershopweb.com</a> instead.';
+      btn.disabled = false; btn.firstChild.textContent = 'Send My Request ';
+    }
+  });
+})();
+</script>
 </body>
 </html>
