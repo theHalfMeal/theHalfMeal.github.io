@@ -165,7 +165,11 @@ footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--mu
   <section id="contact" aria-label="Contact">
     <div class="wrap contact">
       <div class="contact-copy"><div class="eyebrow">Get a free preview</div><h2 class="h2">Want to see your business <span>on a site like these?</span></h2><p>Tell us a little about your business. We’ll build a free preview of your site and email you the link, usually within two days. No payment, no obligation.</p><p>Prefer email? Write to <a class="mail" href="mailto:aravind@cornershopweb.com?subject=Free%20website%20preview">aravind@cornershopweb.com</a></p></div>
-      <form class="form" id="leadForm" novalidate>
+      <form class="form" id="leadForm" action="https://formsubmit.co/67f0a23d17f46c6bc49125e09e53b780" method="POST" target="fsFrame" novalidate>
+        <input type="hidden" name="_subject" id="fSubject" value="New preview request from cornershopweb.com">
+        <input type="hidden" name="_template" value="table">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_replyto" id="fReply" value="">
         <div class="row">
           <label for="fName"><span>Your name <b>*</b></span><input id="fName" name="name" autocomplete="name" required></label>
           <label for="fBiz"><span>Business name <b>*</b></span><input id="fBiz" name="business" autocomplete="organization" required></label>
@@ -180,9 +184,10 @@ footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--mu
         </div>
         <label for="fMsg"><span>Anything we should know?</span><textarea id="fMsg" name="message" placeholder="Your current website, what you sell, what you’d like customers to do…"></textarea></label>
         <label class="hp" aria-hidden="true">Leave this empty<input name="_honey" tabindex="-1" autocomplete="off"></label>
+        <iframe name="fsFrame" title="Form delivery" hidden></iframe>
         <button class="btn" type="submit" id="fSend">Send My Request <span aria-hidden="true">→</span></button>
         <p class="status" id="fStatus" role="status" aria-live="polite"></p>
-        <div class="sent" role="status"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><h3>Thanks, we’ve got it.</h3><p>We’ll build your free preview and email you the link, usually within two days.</p></div>
+        <div class="sent" role="status"><span class="tick" aria-hidden="true"><svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"><path d="m5 12.5 4.5 4.5L19 7.5"/></svg></span><h3>Thanks, we’ve got it.</h3><p>We’ll build your free preview and email you the link, usually within two days. Haven’t heard from us by then? Email aravind@cornershopweb.com.</p></div>
       </form>
     </div>
   </section>
@@ -190,7 +195,6 @@ footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--mu
 <footer><div class="wrap">© <span id="yr"></span> Corner Shop Web</div></footer>
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
-const FORM_KEY = ''; // Web3Forms access key (public by design; it only lets this form deliver to your inbox)
 (() => {
   const form = document.getElementById('leadForm'), btn = document.getElementById('fSend'), status = document.getElementById('fStatus');
   const req = [['fName', 'Add your name.'], ['fBiz', 'Add your business name.'], ['fEmail', 'Add an email so we can send your preview.'], ['fCity', 'Add your city.']];
@@ -200,19 +204,13 @@ const FORM_KEY = ''; // Web3Forms access key (public by design; it only lets thi
     for (const [id, msg] of req) { const el = document.getElementById(id); el.removeAttribute('aria-invalid');
       if (!el.value.trim() || (el.type === 'email' && !/^\S+@\S+\.\S+$/.test(el.value.trim()))) { el.setAttribute('aria-invalid', 'true'); el.focus(); status.className = 'status bad'; status.textContent = el.type === 'email' && el.value.trim() ? 'That email address doesn’t look right.' : msg; return; } }
     const data = Object.fromEntries(new FormData(form));
-    if (data._honey) return; // bots fill the hidden field
+    if (data._honey) { e.preventDefault(); return; } // bots fill the hidden field
+    document.getElementById('fSubject').value = `New preview request: ${data.business.trim()} (${data.city.trim()})`;
+    document.getElementById('fReply').value = data.email.trim();
     btn.disabled = true; btn.firstChild.textContent = 'Sending… ';
-    const fail = () => { status.className = 'status bad'; status.innerHTML = 'Sorry, that didn’t send. Please email <a href="mailto:aravind@cornershopweb.com" style="color:inherit">aravind@cornershopweb.com</a> instead.'; btn.disabled = false; btn.firstChild.textContent = 'Send My Request '; };
-    if (!FORM_KEY) return fail();
-    const payload = { access_key: FORM_KEY, subject: `New preview request: ${data.business} (${data.city})`, from_name: 'Corner Shop Web website', replyto: data.email, botcheck: '', ...data };
-    delete payload._honey;
-    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 15000);
-    try {
-      const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload), signal: ctl.signal });
-      const j = await r.json().catch(() => ({}));
-      clearTimeout(timer);
-      if (r.ok && j.success) form.classList.add('done'); else fail();
-    } catch (err) { clearTimeout(timer); fail(); }
+    // Post into the hidden frame; FormSubmit delivers the email but is slow to answer, so confirm once the request is on its way
+    HTMLFormElement.prototype.submit.call(form);
+    setTimeout(() => form.classList.add('done'), 900);
   });
 })();
 </script>
