@@ -190,6 +190,7 @@ footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--mu
 <footer><div class="wrap">© <span id="yr"></span> Corner Shop Web</div></footer>
 <script>
 document.getElementById('yr').textContent = new Date().getFullYear();
+const FORM_KEY = ''; // Web3Forms access key (public by design; it only lets this form deliver to your inbox)
 (() => {
   const form = document.getElementById('leadForm'), btn = document.getElementById('fSend'), status = document.getElementById('fStatus');
   const req = [['fName', 'Add your name.'], ['fBiz', 'Add your business name.'], ['fEmail', 'Add an email so we can send your preview.'], ['fCity', 'Add your city.']];
@@ -200,17 +201,18 @@ document.getElementById('yr').textContent = new Date().getFullYear();
       if (!el.value.trim() || (el.type === 'email' && !/^\S+@\S+\.\S+$/.test(el.value.trim()))) { el.setAttribute('aria-invalid', 'true'); el.focus(); status.className = 'status bad'; status.textContent = el.type === 'email' && el.value.trim() ? 'That email address doesn’t look right.' : msg; return; } }
     const data = Object.fromEntries(new FormData(form));
     if (data._honey) return; // bots fill the hidden field
-    data._subject = `New preview request: ${data.business} (${data.city})`; data._template = 'table'; data._replyto = data.email; data._captcha = 'false';
     btn.disabled = true; btn.firstChild.textContent = 'Sending… ';
+    const fail = () => { status.className = 'status bad'; status.innerHTML = 'Sorry, that didn’t send. Please email <a href="mailto:aravind@cornershopweb.com" style="color:inherit">aravind@cornershopweb.com</a> instead.'; btn.disabled = false; btn.firstChild.textContent = 'Send My Request '; };
+    if (!FORM_KEY) return fail();
+    const payload = { access_key: FORM_KEY, subject: `New preview request: ${data.business} (${data.city})`, from_name: 'Corner Shop Web website', replyto: data.email, botcheck: '', ...data };
+    delete payload._honey;
+    const ctl = new AbortController(), timer = setTimeout(() => ctl.abort(), 15000);
     try {
-      const r = await fetch('https://formsubmit.co/ajax/aravind@cornershopweb.com', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(data) });
+      const r = await fetch('https://api.web3forms.com/submit', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' }, body: JSON.stringify(payload), signal: ctl.signal });
       const j = await r.json().catch(() => ({}));
-      if (r.ok && String(j.success) !== 'false') { form.classList.add('done'); form.querySelector('.sent').focus?.(); }
-      else throw new Error(j.message || 'Send failed');
-    } catch (err) {
-      status.className = 'status bad'; status.innerHTML = 'Sorry, that didn’t send. Please email <a href="mailto:aravind@cornershopweb.com" style="color:inherit">aravind@cornershopweb.com</a> instead.';
-      btn.disabled = false; btn.firstChild.textContent = 'Send My Request ';
-    }
+      clearTimeout(timer);
+      if (r.ok && j.success) form.classList.add('done'); else fail();
+    } catch (err) { clearTimeout(timer); fail(); }
   });
 })();
 </script>
