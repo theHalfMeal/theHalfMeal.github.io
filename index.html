@@ -3,8 +3,8 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Corner Shop Web · Premium Websites for Local Businesses</title>
-<meta name="description" content="Corner Shop Web builds premium, fast websites for local shops, trades and cafés. We start with a free preview of your site.">
+<title>Corner Shop Web · Websites & Google Profiles for Local Businesses</title>
+<meta name="description" content="Corner Shop Web helps local shops, trades and cafés get found and get called: a premium website, a set-up Google Business Profile, local SEO, reviews and a monthly report. Starts with a free preview.">
 <meta name="theme-color" content="#111214">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="icon" href="/favicon-32.png" sizes="32x32" type="image/png">
@@ -12,7 +12,7 @@
 <link rel="apple-touch-icon" href="/apple-touch-icon.png">
 <link rel="manifest" href="/site.webmanifest">
 <meta property="og:title" content="Corner Shop Web">
-<meta property="og:description" content="Premium websites for local businesses. See a free preview of yours before you pay a cent.">
+<meta property="og:description" content="Websites and Google profiles that make the phone ring. See a free preview of yours before you pay anything.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&family=Inter+Tight:wght@400;500;600&display=swap">
 <style>
@@ -67,6 +67,15 @@ section { padding-block: clamp(4rem, 8vw, 6rem); border-top: 1px solid var(--lin
 .card b { font-family: var(--display); font-weight: 700; font-stretch: 110%; font-size: 1.6rem; letter-spacing: -0.02em; }
 .card small { color: rgba(255,255,255,.82); }
 .card .tag { position: absolute; top: 14px; left: 14px; font-size: .7rem; font-weight: 600; letter-spacing: .1em; text-transform: uppercase; padding: .35rem .65rem; border-radius: 999px; background: rgba(0,0,0,.45); -webkit-backdrop-filter: blur(8px); backdrop-filter: blur(8px); }
+.inc { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin-top: 2.2rem; }
+@media (max-width: 900px) { .inc { grid-template-columns: 1fr 1fr; } } @media (max-width: 560px) { .inc { grid-template-columns: 1fr; } }
+.inc > div { background: var(--surface); border-radius: 20px; padding: 1.4rem; display: grid; gap: .55rem; align-content: start; box-shadow: inset 0 0 0 1px var(--line); transition: transform .5s var(--spring), box-shadow .4s; }
+.inc > div:hover { transform: translateY(-3px); box-shadow: inset 0 0 0 1px var(--line), 0 20px 40px -28px rgba(0,0,0,.6); }
+.inc .ic { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: rgba(240,168,104,.14); color: var(--accent); }
+.inc .ic svg { width: 22px; height: 22px; }
+.inc b { font-size: 1.08rem; } .inc p { color: var(--muted); font-size: .95rem; }
+.tier .per { font-size: .95rem; color: var(--muted); font-weight: 500; }
+.tier .tag { justify-self: start; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .6rem; border-radius: 999px; background: var(--accent); color: var(--accent-ink); }
 .steps { list-style: none; padding: 0; margin: 2.2rem 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: s; }
 @media (max-width: 900px) { .steps { grid-template-columns: 1fr 1fr; } } @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
 .steps li { counter-increment: s; background: var(--surface); border-radius: 20px; padding: 1.4rem; display: grid; gap: .5rem; align-content: start; box-shadow: inset 0 0 0 1px var(--line); }
@@ -114,15 +123,30 @@ footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--mu
 <header>
   <div class="wrap">
     <a class="logo" href="/" translate="no"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 13 16 5l11 8v13H5V13Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M5 13h22" stroke="#f0a868" stroke-width="2.4"/><rect x="12" y="17" width="8" height="9" rx="1.5" fill="#f0a868"/></svg>Corner Shop Web</a>
-    <nav aria-label="Main"><a href="#work">Work</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></nav>
+    <nav aria-label="Main"><a href="#included">What we do</a><a href="#work">Work</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></nav>
   </div>
 </header>
 <main>
   <div class="wrap hero">
-    <h1><span class="ln"><span style="--i:0">Websites that look as good</span></span><span class="ln"><span style="--i:1"><em>as your work.</em></span></span></h1>
-    <p>Corner Shop Web builds premium, fast websites for local shops, trades and cafés. We start by building a free preview of your site, so you see exactly what you’re getting before you pay anything.</p>
+    <h1><span class="ln"><span style="--i:0">Get found.</span></span><span class="ln"><span style="--i:1"><em>Get called.</em></span></span></h1>
+    <p>Corner Shop Web gives local shops, trades and cafés everything they need to win customers online: a premium website, a properly set-up Google profile, local search basics and more reviews. We start with a free preview of your site, so you see exactly what you’re getting before you pay anything.</p>
     <div class="ctas"><a class="btn" href="#contact">Get a Free Preview <span aria-hidden="true">→</span></a><a class="btn ghost" href="#work">See Our Work</a></div>
   </div>
+
+  <section id="included" aria-label="What we do">
+    <div class="wrap">
+      <div class="eyebrow">What we do</div>
+      <h2 class="h2" style="margin-top:.6rem">More than a website. <span>Everything that brings customers in.</span></h2>
+      <div class="inc">
+        <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M3 8h18M8 21h8"/></svg></span><b>A premium website</b><p>Fast, mobile-first and built around how your customers actually call, book or buy.</p></div>
+        <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 21s-7-6.2-7-11a7 7 0 0 1 14 0c0 4.8-7 11-7 11Z"/><circle cx="12" cy="10" r="2.5"/></svg></span><b>Google Business Profile</b><p>Claimed, verified and filled out: services, hours, photos and a booking or quote link.</p></div>
+        <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="6"/><path d="m20 20-4.5-4.5"/></svg></span><b>Local SEO basics</b><p>Your city and services in the right places, local business markup, and pages Google can read.</p></div>
+        <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 6h16M4 12h16M4 18h10"/></svg></span><b>Consistent listings</b><p>The same name, address and phone on Apple Maps, Bing, Yelp and Facebook.</p></div>
+        <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="m12 3 2.6 5.6 6.1.7-4.5 4.1 1.2 6L12 16.5 6.6 19.4l1.2-6L3.3 9.3l6.1-.7L12 3Z"/></svg></span><b>More Google reviews</b><p>A simple link and QR code your happy customers can use in seconds.</p></div>
+        <div><span class="ic" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20V10M10 20V4M16 20v-7M22 20H2"/></svg></span><b>A monthly report</b><p>One page: visits, calls, form requests and how people found you. No jargon.</p></div>
+      </div>
+    </div>
+  </section>
 
   <section id="work" aria-label="Work">
     <div class="wrap">
@@ -143,8 +167,8 @@ footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--mu
       <ol class="steps">
         <li><b>Free preview</b><p>We build a preview of your site using your real details from Google.</p></li>
         <li><b>Your feedback</b><p>Tell us what to change. We swap in your photos, prices and wording.</p></li>
-        <li><b>Live in a week</b><p>We put it on your own domain and set up your Google listing.</p></li>
-        <li><b>We keep it running</b><p>Hosting, updates and small edits, so you can focus on the shop.</p></li>
+        <li><b>Live in a week</b><p>We launch on your own domain and set up your Google profile, listings and review link.</p></li>
+        <li><b>We keep it working</b><p>Hosting, edits, Google profile posts and a monthly report, so you can focus on the shop.</p></li>
       </ol>
     </div>
   </section>
@@ -154,11 +178,11 @@ footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--mu
       <div class="eyebrow">Pricing</div>
       <h2 class="h2" style="margin-top:.6rem">Simple packages. <span>No surprises.</span></h2>
       <div class="tiers">
-        <div class="tier"><h3>Starter</h3><div class="price">From $750</div><ul><li>One-page site</li><li>Your photos, hours and services</li><li>Google Business Profile setup</li></ul></div>
-        <div class="tier hot"><h3>Pro</h3><div class="price">From $2,500</div><ul><li>Multi-section premium design</li><li>Quote or booking form</li><li>Before-and-after gallery</li></ul></div>
-        <div class="tier"><h3>Premium</h3><div class="price">From $6,000</div><ul><li>Custom interactive features</li><li>Online estimates, shop or menu</li><li>Scroll stories and motion</li></ul></div>
+        <div class="tier hot"><span class="tag">Most popular</span><h3>Launch</h3><div class="price">From $1,500 <span class="per">one-time</span></div><ul><li>Premium website with a quote or booking form</li><li>Google Business Profile set up and optimized</li><li>Local SEO basics and consistent listings</li><li>Review link and QR code</li><li>Analytics, ready on day one</li></ul></div>
+        <div class="tier"><h3>Care</h3><div class="price">$149 <span class="per">/ month</span></div><ul><li>Hosting, security and updates</li><li>Small edits whenever you need them</li><li>Monthly Google profile posts</li><li>Review requests to recent customers</li><li>A one-page monthly report</li></ul></div>
+        <div class="tier"><h3>Premium</h3><div class="price">From $6,000 <span class="per">one-time</span></div><ul><li>Everything in Launch</li><li>Custom features: online estimates, shop or menu</li><li>Scroll stories and motion</li><li>Before-and-after galleries</li></ul></div>
       </div>
-      <p class="note">Care plans for hosting, updates and edits are available from $50 a month.</p>
+      <p class="note">Every project starts with a free preview of your site. Care is month to month, so you can cancel any time.</p>
     </div>
   </section>
 
