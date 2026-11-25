@@ -355,7 +355,7 @@ footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--mu
                   <div class="r you" style="--d:1.5s"><b>Your business</b><span class="st">4.1 <i>★★★★</i> (3) · Unclaimed</span><div class="bt"><span class="no">No website</span><span>Call</span></div></div>
                 </div>
               </div></div></div>
-              <div class="el fl in" style="--x:540px;--y:190px;--mx:110px;--my:360px;--mk:.85;--d:2.4s">
+              <div class="el fl in mh" style="--x:540px;--y:190px;--d:2.4s">
                 <b>What a customer sees</b>
                 <ul><li><span class="x">✕</span> No website to check you out</li><li><span class="x">✕</span> Profile not claimed</li><li><span class="x">✕</span> Only 3 reviews</li></ul>
                 <p style="margin-top:10px;color:#f0a868;font-weight:700">So they call the next roofer.</p>
@@ -589,7 +589,7 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     caps.forEach((c, k) => c.classList.toggle('on', k === i)); counts(scenes[i]); }
   const sync = () => { j.classList.toggle('paused', user || !inView); j.classList.toggle('user', user); ctl.setAttribute('aria-label', user ? 'Play walkthrough' : 'Pause walkthrough'); };
 
-  tabs.forEach((t, k) => { t.addEventListener('click', () => go(k)); t.querySelector('.bar i').addEventListener('animationend', () => { if (!reduce && k === i) go(i + 1); }); });
+  tabs.forEach((t, k) => { t.addEventListener('click', () => { started = true; go(k); }); t.querySelector('.bar i').addEventListener('animationend', () => { if (!reduce && k === i) go(i + 1); }); });
   ctl.addEventListener('click', () => { user = !user; sync(); });
   let sx = null; stage.addEventListener('touchstart', (e) => { sx = e.touches[0].clientX; }, { passive: true });
   stage.addEventListener('touchend', (e) => { if (sx == null) return; const dx = e.changedTouches[0].clientX - sx; sx = null; if (Math.abs(dx) > 45) go(i + (dx < 0 ? 1 : -1)); });
