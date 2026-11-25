@@ -74,7 +74,7 @@ section { padding-block: clamp(4rem, 8vw, 6rem); border-top: 1px solid var(--lin
 .inc .ic { width: 42px; height: 42px; border-radius: 12px; display: grid; place-items: center; background: rgba(240,168,104,.14); color: var(--accent); }
 .inc .ic svg { width: 22px; height: 22px; }
 .inc b { font-size: 1.08rem; } .inc p { color: var(--muted); font-size: .95rem; }
-.tier .per { font-size: .95rem; color: var(--muted); font-weight: 500; }
+.tier .per { display: block; margin-top: .2rem; font-family: var(--sans); font-size: .85rem; letter-spacing: 0; color: var(--muted); font-weight: 500; }
 .tier .tag { justify-self: start; font-size: .7rem; font-weight: 700; letter-spacing: .1em; text-transform: uppercase; padding: .3rem .6rem; border-radius: 999px; background: var(--accent); color: var(--accent-ink); }
 .steps { list-style: none; padding: 0; margin: 2.2rem 0 0; display: grid; grid-template-columns: repeat(4, 1fr); gap: 16px; counter-reset: s; }
 @media (max-width: 900px) { .steps { grid-template-columns: 1fr 1fr; } } @media (max-width: 520px) { .steps { grid-template-columns: 1fr; } }
