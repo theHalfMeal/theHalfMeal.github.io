@@ -575,6 +575,8 @@ document.getElementById('yr').textContent = new Date().getFullYear();
     const cw = m ? 400 : 1000, ch = m ? 540 : 600, s = Math.min(w / cw, Math.max(innerHeight * (m ? .66 : .6), 300) / ch); cv.style.transform = `translateX(${(w - cw * s) / 2}px) scale(${s})`; stage.style.height = ch * s + 'px'; };
   addEventListener('resize', fit);
   new ResizeObserver(fit).observe(stage); fit();
+  // the stage resizes after load, so re-apply any #section link once layout settles
+  if (location.hash.length > 1) { const t = document.getElementById(location.hash.slice(1)); if (t) addEventListener('load', () => t.scrollIntoView({ block: 'start' })); }
 
   const counts = (sc) => { raf.forEach(cancelAnimationFrame); raf = [];
     sc.querySelectorAll('[data-to]').forEach((el) => { const a = +el.dataset.from, b = +el.dataset.to, d = +el.dataset.delay || 0;
