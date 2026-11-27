@@ -311,6 +311,25 @@ footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--mu
 .sc.on .ring { animation: jshake .5s ease-in-out .6s 4; }
 @keyframes jshake { 25% { rotate: -2deg; } 75% { rotate: 2deg; } }
 @media (max-width: 640px) { .jtabs { gap: 5px; } .jtabs button span { display: none; } .jcap { min-height: 9.5rem; } }
+.about { display: grid; grid-template-columns: 300px 1fr; gap: clamp(1.5rem, 5vw, 4rem); margin-top: 2.2rem; align-items: start; }
+@media (max-width: 800px) { .about { grid-template-columns: 1fr; } }
+.me { background: var(--surface); border-radius: 24px; padding: 1.6rem; box-shadow: inset 0 0 0 1px var(--line); display: grid; gap: 1rem; }
+.me .mono { width: 72px; height: 72px; border-radius: 22px; display: grid; place-items: center; font-family: var(--display); font-weight: 800; font-stretch: 110%; font-size: 2rem; color: var(--accent-ink); background: linear-gradient(135deg, #f6c08f, var(--accent)); box-shadow: 0 16px 34px -16px rgba(240,168,104,.7); }
+.me b { font-size: 1.25rem; display: block; } .me span { color: var(--muted); font-size: .95rem; }
+.me a { color: var(--ink); font-weight: 600; text-decoration: none; border-bottom: 1px solid var(--line); justify-self: start; font-size: .95rem; }
+.story { display: grid; gap: 1rem; font-size: 1.12rem; color: var(--muted); max-width: 40rem; }
+.story strong { color: var(--ink); font-weight: 600; }
+.story .sig { color: var(--ink); font-weight: 600; }
+.marq { margin-top: 3rem; display: grid; gap: 12px; overflow: hidden; -webkit-mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent); }
+.mrow { display: flex; gap: 12px; width: max-content; animation: mq 46s linear infinite; }
+.mrow.rev { animation-direction: reverse; animation-duration: 54s; }
+.marq:hover .mrow { animation-play-state: paused; }
+@keyframes mq { to { transform: translateX(calc(-50% - 6px)); } }
+.pc { width: 300px; flex: none; background: var(--surface); border-radius: 18px; padding: 1.1rem 1.2rem; box-shadow: inset 0 0 0 1px var(--line); display: grid; gap: .4rem; align-content: start; }
+.pc b { font-size: 1rem; display: flex; gap: .5rem; align-items: center; } .pc b::before { content: "✓"; display: grid; place-items: center; width: 20px; height: 20px; flex: none; border-radius: 50%; background: rgba(240,168,104,.16); color: var(--accent); font-size: .72rem; font-weight: 800; }
+.pc p { color: var(--muted); font-size: .92rem; }
+@media (max-width: 560px) { .pc { width: 250px; } }
+@media (prefers-reduced-motion: reduce) { .mrow { flex-wrap: wrap; width: auto; } .mrow [aria-hidden] { display: none; } .marq { mask-image: none; -webkit-mask-image: none; } }
 @media (prefers-reduced-motion: reduce) { *, *::before, *::after { animation-duration: .01ms !important; animation-delay: 0s !important; transition-duration: .01ms !important; } }
 </style>
 </head>
@@ -318,7 +337,7 @@ footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--mu
 <header>
   <div class="wrap">
     <a class="logo" href="/" translate="no"><svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M5 13 16 5l11 8v13H5V13Z" stroke="currentColor" stroke-width="2.4" stroke-linejoin="round"/><path d="M5 13h22" stroke="#f0a868" stroke-width="2.4"/><rect x="12" y="17" width="8" height="9" rx="1.5" fill="#f0a868"/></svg>Corner Shop Web</a>
-    <nav aria-label="Main"><a href="#included">What you get</a><a href="#work">Work</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></nav>
+    <nav aria-label="Main"><a href="#included">What you get</a><a href="#work">Work</a><a href="#about">About</a><a href="#how">How it works</a><a href="#pricing">Pricing</a><a href="#contact">Contact</a></nav>
   </div>
 </header>
 <main>
@@ -475,6 +494,26 @@ footer { padding-block: 2rem; border-top: 1px solid var(--line); color: var(--mu
         <a class="card" href="/halden-coffee/"><img src="/halden-coffee/coffee/hero.jpg" alt="Halden Coffee concept site" loading="lazy" width="2200" height="3298" style="object-position:50% 60%"><span class="tag">Café & shop · Concept</span><div class="in"><b>Halden Coffee Roasters</b><small>Draggable coffee shelf, roast dial, bag and subscriptions.</small></div></a>
       </div>
       <p class="note">These are concept sites for fictional businesses, built to show what’s possible. Your site is designed around your business, your photos and your customers.</p>
+    </div>
+  </section>
+
+  <section id="about" aria-label="About">
+    <div class="wrap">
+      <div class="eyebrow">About</div>
+      <h2 class="h2" style="margin-top:.6rem">A small studio <span>for small businesses.</span></h2>
+      <div class="about">
+        <div class="me"><div class="mono" aria-hidden="true">A</div><div><b>Aravind</b><span>Founder, Corner Shop Web</span></div><a href="mailto:aravind@cornershopweb.com">aravind@cornershopweb.com</a></div>
+        <div class="story">
+          <p>Hi, I’m Aravind. I started Corner Shop Web because I kept finding the same thing: <strong>great local businesses with hundreds of happy customers, and almost nothing online.</strong> No website, an unclaimed Google listing, and a phone that rings less than it should.</p>
+          <p>Big agencies charge a fortune and hand you off to someone new every month. DIY builders leave you doing it all yourself at 10pm. I wanted something in between: <strong>a premium site and a properly set-up Google profile, built for you, at a fair price,</strong> by one person you can actually reach.</p>
+          <p>That’s why every project starts with a free preview. You see your own site, with your own details, before you spend a dollar. If it’s not right for you, no hard feelings.</p>
+          <p class="sig">Aravind</p>
+        </div>
+      </div>
+      <div class="marq" aria-label="What you can count on">
+        <div class="mrow"><div class="pc"><b>You see it before you pay</b><p>We build a free preview of your site first. No card, no commitment.</p></div><div class="pc"><b>One person, start to finish</b><p>You deal with me directly. No account managers, no call centers.</p></div><div class="pc"><b>Prices shown upfront</b><p>Build fee and Care plan are on this page. Bigger changes are quoted before any work starts.</p></div><div class="pc"><b>No long contracts</b><p>The Care plan is month to month.</p></div><div style="display:contents" aria-hidden="true"><div class="pc"><b>You see it before you pay</b><p>We build a free preview of your site first. No card, no commitment.</p></div><div class="pc"><b>One person, start to finish</b><p>You deal with me directly. No account managers, no call centers.</p></div><div class="pc"><b>Prices shown upfront</b><p>Build fee and Care plan are on this page. Bigger changes are quoted before any work starts.</p></div><div class="pc"><b>No long contracts</b><p>The Care plan is month to month.</p></div></div></div>
+        <div class="mrow rev"><div class="pc"><b>Built for phones first</b><p>Most of your customers will find you on a phone, so that’s where we start.</p></div><div class="pc"><b>Your Google profile, done properly</b><p>Claimed, verified and filled out with real photos, hours and services.</p></div><div class="pc"><b>Plain-English reports</b><p>Once a month: visitors, calls and quote requests. No jargon.</p></div><div class="pc"><b>Live in about a week</b><p>Once you approve the preview, we launch on your own domain.</p></div><div style="display:contents" aria-hidden="true"><div class="pc"><b>Built for phones first</b><p>Most of your customers will find you on a phone, so that’s where we start.</p></div><div class="pc"><b>Your Google profile, done properly</b><p>Claimed, verified and filled out with real photos, hours and services.</p></div><div class="pc"><b>Plain-English reports</b><p>Once a month: visitors, calls and quote requests. No jargon.</p></div><div class="pc"><b>Live in about a week</b><p>Once you approve the preview, we launch on your own domain.</p></div></div></div>
+      </div>
     </div>
   </section>
 
